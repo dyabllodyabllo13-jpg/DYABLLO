@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>منظومة D</title>
+
+<style>
+:root{
+--bg:#060816;
+--card:#0d1326;
+--gold:#d4af37;
+--text:#ffffff;
+--border:#1d2744;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+}
+
+header{
+padding:30px;
+text-align:center;
+border-bottom:1px solid var(--border);
+}
+
+.logo{
+font-size:90px;
+font-weight:bold;
+color:var(--gold);
+letter-spacing:5px;
+text-shadow:0 0 25px rgba(212,175,55,.4);
+}
+
+.title{
+font-size:32px;
+margin-top:10px;
+color:var(--gold);
+}
+
+.slogan{
+margin-top:10px;
+opacity:.8;
+}
+
+.topbar{
+display:flex;
+gap:10px;
+padding:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+input{
+background:#111827;
+border:1px solid var(--border);
+color:white;
+padding:12px;
+min-width:250px;
+outline:none;
+}
+
+button{
+background:var(--gold);
+color:black;
+border:none;
+padding:12px 18px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.stats{
+text-align:center;
+margin:20px;
+font-size:18px;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+padding:25px;
+cursor:pointer;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:var(--gold);
+}
+
+.card h3{
+margin-bottom:10px;
+color:var(--gold);
+}
+
+.card p{
+opacity:.7;
+}
+
+.tiktok{
+margin:30px;
+padding:20px;
+background:var(--card);
+border:1px solid var(--border);
+text-align:center;
+}
+
+.footer{
+padding:20px;
+text-align:center;
+opacity:.6;
+}
+
+@media(max-width:600px){
+.logo{
+font-size:60px;
+}
+.title{
+font-size:24px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">D</div>
+
+<div class="title">منظومة D</div>
+
+<div class="slogan">
+منظومة D لا ترحب بالجميع.
+</div>
+
+</header>
+
+<div class="topbar">
+
+<input
+type="text"
+placeholder="ابحث هنا..."
+>
+
+<button>🌐 العربية</button>
+
+<button>👤 تسجيل الدخول</button>
+
+<button>🎯 اختبر معلوماتك</button>
+
+</div>
+
+<div class="stats">
+⭐ نقاطك: <span id="points">0</span>
+</div>
+
+<section class="categories">
+
+<div class="card">
+<h3>🕌 الدين</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>🔬 العلوم</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>⚖️ القانون</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>💻 التكنولوجيا</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>💰 الاقتصاد</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>🎨 الفنون</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>🏋️ الرياضة</h3>
+<p>قريباً...</p>
+</div>
+
+<div class="card">
+<h3>🌍 اللغات</h3>
+<p>قريباً...</p>
+</div>
+
+</section>
+
+<div class="tiktok">
+
+<h2>DYABLLO DYABLLO</h2>
+
+<p>@dyabllo.dyabllo</p>
+
+<br>
+
+<button>TikTok</button>
+
+</div>
+
+<div class="footer">
+D System Does Not Welcome Everyone.
+</div>
+
+<script>
+
+let points =
+localStorage.getItem("points") || 0;
+
+document.getElementById("points")
+.textContent = points;
+
+</script>
+
+</body>
+</html>
