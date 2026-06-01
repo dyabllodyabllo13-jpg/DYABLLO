@@ -238,7 +238,122 @@ localStorage.getItem("points") || 0;
 
 document.getElementById("points")
 .textContent = points;
+const categories = {
 
+science: [
+"⚛️ الفيزياء",
+"🧪 الكيمياء",
+"🧬 الأحياء",
+"➗ الرياضيات",
+"🏥 الطب",
+"💊 الصيدلة",
+"🩺 التمريض",
+"🌌 الفلك"
+],
+
+religion: [
+"📖 القرآن الكريم",
+"📜 الأحاديث",
+"🕋 العقيدة",
+"🕌 الفقه",
+"📚 السيرة النبوية",
+"📿 الأذكار",
+"👳 قصص الأنبياء",
+"🎙️ التجويد"
+],
+
+technology: [
+"HTML",
+"CSS",
+"JavaScript",
+"Python",
+"AI",
+"Cyber Security",
+"Networks",
+"Databases"
+]
+
+};
+
+function openCategory(category){
+
+let html = `
+<div style="padding:20px">
+
+<button onclick="location.reload()">
+⬅ العودة
+</button>
+
+<h1 style="margin:20px 0">
+الأقسام
+</h1>
+
+`;
+
+categories[category].forEach(item=>{
+
+html += `
+<div
+style="
+background:#0d1326;
+border:1px solid #1d2744;
+padding:20px;
+margin:10px 0;
+cursor:pointer;
+"
+onclick="comingSoon('${item}')"
+>
+
+<h3>${item}</h3>
+
+<p>قريباً...</p>
+
+</div>
+`;
+
+});
+
+html += `</div>`;
+
+document.body.innerHTML = html;
+
+}
+
+function comingSoon(title){
+
+document.body.innerHTML = `
+
+<div
+style="
+padding:40px;
+text-align:center;
+color:white;
+background:#060816;
+height:100vh;
+"
+>
+
+<button onclick="location.reload()">
+⬅ العودة
+</button>
+
+<h1 style="margin-top:40px">
+${title}
+</h1>
+
+<h2 style="color:#d4af37">
+🚧 قريباً
+</h2>
+
+<p>
+هذا القسم قيد التطوير.
+</p>
+
+</div>
+
+`;
+
+}
 </script>
 
 </body>
