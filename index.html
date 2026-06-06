@@ -337,7 +337,7 @@ padding:20px;
 margin:10px 0;
 cursor:pointer;
 "
-onclick="comingSoon('${item}')"
+onclick="openItem('${item}')"
 >
 
 <h3>${item}</h3>
@@ -388,8 +388,22 @@ ${title}
 </div>
 
 `;
+function openItem(item){
+
+if(item==="📚 الكتب"){
+alert("📖 القرآن الكريم\n📜 الأحاديث\n📚 السيرة النبوية\n👳 قصص الأنبياء");
+}
+
+else if(item==="📖 الشروحات"){
+alert("🕋 العقيدة\n🕌 الفقه\n📿 الأذكار\n🎙️ التجويد");
+}
+
+else{
+comingSoon(item);
+}
 
 }
+
 </script>
 
 </body>
