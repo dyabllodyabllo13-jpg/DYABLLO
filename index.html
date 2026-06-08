@@ -337,20 +337,7 @@ languages: [
 ]
 
 };
-vconst religionBooks = [
-"📖 القرآن الكريم",
-"📜 الأحاديث",
-"📚 السيرة النبوية",
-"👳 قصص الأنبياء"
-];
 
-const religionLessons = [
-"🕋 العقيدة",
-"🕌 الفقه",
-"📿 الأذكار",
-"🎙️ التجويد"
-];
-  
 function openCategory(category){
 
 let html = `
@@ -368,12 +355,6 @@ let html = `
 
 categories[category].forEach(item=>{
 
-let action = `comingSoon('${item}')`;
-
-if(category==="religion" && item==="📖 القرآن الكريم"){
-action = `showBooks()`;
-}
-
 html += `
 <div
 style="
@@ -383,7 +364,7 @@ padding:20px;
 margin:10px 0;
 cursor:pointer;
 "
-onclick="${action}"
+onclick="comingSoon('${item}')"
 >
 
 <h3>${item}</h3>
