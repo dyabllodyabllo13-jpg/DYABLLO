@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>منظومة D</title>
-
 <style>
 :root{
 --bg:#060816;
@@ -14,410 +12,503 @@
 --text:#ffffff;
 --border:#1d2744;
 }
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-}
-
-header{
-padding:30px;
-text-align:center;
-border-bottom:1px solid var(--border);
-}
-
-.logo{
-font-size:90px;
-font-weight:bold;
-color:var(--gold);
-letter-spacing:5px;
-text-shadow:0 0 25px rgba(212,175,55,.4);
-}
-
-.title{
-font-size:32px;
-margin-top:10px;
-color:var(--gold);
-}
-
-.slogan{
-margin-top:10px;
-opacity:.8;
-}
-
-.topbar{
-display:flex;
-gap:10px;
-padding:20px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-input{
-background:#111827;
-border:1px solid var(--border);
-color:white;
-padding:12px;
-min-width:250px;
-outline:none;
-}
-
-button{
-background:var(--gold);
-color:black;
-border:none;
-padding:12px 18px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.stats{
-text-align:center;
-margin:20px;
-font-size:18px;
-}
-
-.categories{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-padding:20px;
-}
-
-.card{
-background:var(--card);
-border:1px solid var(--border);
-padding:25px;
-cursor:pointer;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-color:var(--gold);
-}
-
-.card h3{
-margin-bottom:10px;
-color:var(--gold);
-}
-
-.card p{
-opacity:.7;
-}
-
-.tiktok{
-margin:30px;
-padding:20px;
-background:var(--card);
-border:1px solid var(--border);
-text-align:center;
-}
-
-.footer{
-padding:20px;
-text-align:center;
-opacity:.6;
-}
-
-@media(max-width:600px){
-.logo{
-font-size:60px;
-}
-.title{
-font-size:24px;
-}
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma,sans-serif;}
+body{background:var(--bg);color:var(--text);}
+header{padding:30px;text-align:center;border-bottom:1px solid var(--border);}
+.logo{font-size:90px;font-weight:bold;color:var(--gold);letter-spacing:5px;text-shadow:0 0 25px rgba(212,175,55,.4);}
+.title{font-size:32px;margin-top:10px;color:var(--gold);}
+.slogan{margin-top:10px;opacity:.8;}
+.topbar{display:flex;gap:10px;padding:20px;flex-wrap:wrap;justify-content:center;}
+input{background:#111827;border:1px solid var(--border);color:white;padding:12px;min-width:250px;outline:none;}
+button{background:var(--gold);color:black;border:none;padding:12px 18px;cursor:pointer;font-weight:bold;}
+.stats{text-align:center;margin:20px;font-size:18px;}
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;padding:20px;}
+.card{background:var(--card);border:1px solid var(--border);padding:25px;cursor:pointer;transition:.3s;}
+.card:hover{transform:translateY(-5px);border-color:var(--gold);}
+.card h3{margin-bottom:10px;color:var(--gold);}
+.card p{opacity:.7;}
+.tiktok{margin:30px;padding:20px;background:var(--card);border:1px solid var(--border);text-align:center;}
+.footer{padding:20px;text-align:center;opacity:.6;}
+@media(max-width:600px){.logo{font-size:60px;}.title{font-size:24px;}}
 </style>
 </head>
-
 <body>
 
 <header>
-
 <div class="logo">D</div>
-
 <div class="title">منظومة D</div>
-
-<div class="slogan">
-منظومة D لا ترحب بالجميع.
-</div>
-
+<div class="slogan">منظومة D لا ترحب بالجميع.</div>
 </header>
 
 <div class="topbar">
-
-<input
-type="text"
-placeholder="ابحث هنا..."
->
-
+<input type="text" placeholder="ابحث هنا...">
 <button>🌐 العربية</button>
-
-<button>👤 تسجيل الدخول</button>
-
+<button onclick="showLogin()">👤 تسجيل الدخول</button>
 <button>🎯 اختبر معلوماتك</button>
-
 </div>
 
 <div class="stats">
-⭐ نقاطك: <span id="points">0</span>
+⭐ نقاطك: <span id="points">0</span> &nbsp;|&nbsp; <span id="levelName">👤 المجهول</span>
+<br><br>
+<span id="username" style="color:#d4af37;font-size:14px"></span>
 </div>
 
 <section class="categories">
 
-<div class="card" 
-onclick="openCategory('religion')">
+<div class="card" onclick="openCategory('religion')">
 <h3>🕌 الدين</h3>
-<p>قريباً...</p>
+<p>استكشف علوم الدين</p>
 </div>
 
-<div class="card"
-onclick="openCategory('science')">
+<div class="card" onclick="openCategory('science')">
 <h3>🔬 العلوم</h3>
 <p>قريباً...</p>
 </div>
 
-<div class="card"
-onclick="openCategory('law')">
+<div class="card" onclick="openCategory('law')">
 <h3>⚖️ القانون</h3>
 <p>قريباً...</p>
 </div>
 
-<div class="card"
-onclick="openCategory('technology')">
+<div class="card" onclick="openCategory('technology')">
 <h3>💻 التكنولوجيا</h3>
 <p>قريباً...</p>
 </div>
 
-<div class="card"
-onclick="openCategory('economy')">
+<div class="card" onclick="openCategory('economy')">
 <h3>💰 الاقتصاد</h3>
 <p>قريباً...</p>
 </div>
 
-<div class="card"
-onclick="openCategory('arts')">
+<div class="card" onclick="openCategory('arts')">
 <h3>🎨 الفنون</h3>
 <p>قريباً...</p>
 </div>
 
-<div class="card"
-onclick="openCategory('sports')">
+<div class="card" onclick="openCategory('sports')">
 <h3>🏋️ الرياضة</h3>
 <p>قريباً...</p>
 </div>
-  
-<div class="card"
-onclick="openCategory('languages')">
+
+<div class="card" onclick="openCategory('languages')">
 <h3>🌍 اللغات</h3>
 <p>قريباً...</p>
+</div>
+
+<div class="card" onclick="openSecret()" style="border-color:#1a0a0a;background:#0a0808;">
+<h3 style="color:#444">🔒 ???</h3>
+<p style="color:#333">خفايا منظومة D</p>
 </div>
 
 </section>
 
 <div class="tiktok">
-
 <h2>DYABLLO DYABLLO</h2>
-
 <p>@dyabllo.dyabllo</p>
-
 <br>
-
 <button>TikTok</button>
-
 </div>
 
-<div class="footer">
-D System Does Not Welcome Everyone.
-</div>
+<div class="footer">D System Does Not Welcome Everyone.</div>
 
 <script>
 
-let points =
-localStorage.getItem("points") || 0;
+const levels = [
+{name:"👤 المجهول", min:0},
+{name:"⚔️ المتدرب", min:1000},
+{name:"🗡️ المحارب", min:5000},
+{name:"🔥 الشعلة", min:15000},
+{name:"🌪️ العاصفة", min:40000},
+{name:"💀 الظل الأسود", min:100000},
+{name:"🐉 التنين الأحمر", min:250000},
+{name:"👁️ الوصي", min:400000},
+{name:"🌑 الصامت الأبدي", min:650000},
+{name:"🐺 الذئب المنفرد", min:1000000}
+];
 
-document.getElementById("points")
-.textContent = points;
 const categories = {
-
-science: [
-"⚛️ الفيزياء",
-"🧪 الكيمياء",
-"🧬 الأحياء",
-"➗ الرياضيات",
-"🏥 الطب",
-"💊 الصيدلة",
-"🩺 التمريض",
-"🌌 الفلك"
-],
-
-religion: [
-"📖 القرآن الكريم",
-"📜 الأحاديث",
-"🕋 العقيدة",
-"🕌 الفقه",
-"📚 السيرة النبوية",
-"📿 الأذكار",
-"👳 قصص الأنبياء",
-"🎙️ التجويد"
-],
-
-technology: [
-"HTML",
-"CSS",
-"JavaScript",
-"Python",
-"AI",
-"Cyber Security",
-"Networks",
-"Databases"
-],
-
-law: [
-"📜 القانون المدني",
-"⚖️ القانون الجنائي",
-"🏛️ القانون الدستوري",
-"🌍 القانون الدولي",
-"👨‍⚖️ القضاء",
-"📑 العقود",
-"🏢 القانون التجاري",
-"🛡️ حقوق الإنسان"
-],
-
-economy: [
-"💵 الاقتصاد الكلي",
-"📈 الاقتصاد الجزئي",
-"🏦 البنوك",
-"💹 الاستثمار",
-"📊 الأسواق المالية",
-"💰 ريادة الأعمال",
-"🌍 التجارة الدولية",
-"📉 التضخم"
-],
-
-arts: [
-"🎨 الرسم",
-"🎵 الموسيقى",
-"🎭 المسرح",
-"🎬 السينما",
-"📸 التصوير",
-"✍️ الأدب",
-"🗿 النحت",
-"🏛️ العمارة"
-],
-
-sports: [
-"⚽ كرة القدم",
-"🏀 كرة السلة",
-"🎾 التنس",
-"🏊 السباحة",
-"🏋️ كمال الأجسام",
-"🥋 الفنون القتالية",
-"🚴 ركوب الدراجات",
-"🏃 ألعاب القوى"
-],
-
-languages: [
-"🇬🇧 الإنجليزية",
-"🇫🇷 الفرنسية",
-"🇯🇵 اليابانية",
-"🇨🇳 الصينية",
-"🇪🇸 الإسبانية",
-"🇩🇪 الألمانية",
-"🇷🇺 الروسية",
-"🇰🇷 الكورية"
-]
-
+science:["⚛️ الفيزياء","🧪 الكيمياء","🧬 الأحياء","➗ الرياضيات","🏥 الطب","💊 الصيدلة","🩺 التمريض","🌌 الفلك"],
+religion:["📖 القرآن الكريم","📜 الأحاديث","🕋 العقيدة","🕌 الفقه","📚 السيرة النبوية","📿 الأذكار","👳 قصص الأنبياء","🎙️ التجويد"],
+technology:["HTML","CSS","JavaScript","Python","AI","Cyber Security","Networks","Databases"],
+law:["📜 القانون المدني","⚖️ القانون الجنائي","🏛️ القانون الدستوري","🌍 القانون الدولي","👨‍⚖️ القضاء","📑 العقود","🏢 القانون التجاري","🛡️ حقوق الإنسان"],
+economy:["💵 الاقتصاد الكلي","📈 الاقتصاد الجزئي","🏦 البنوك","💹 الاستثمار","📊 الأسواق المالية","💰 ريادة الأعمال","🌍 التجارة الدولية","📉 التضخم"],
+arts:["🎨 الرسم","🎵 الموسيقى","🎭 المسرح","🎬 السينما","📸 التصوير","✍️ الأدب","🗿 النحت","🏛️ العمارة"],
+sports:["⚽ كرة القدم","🏀 كرة السلة","🎾 التنس","🏊 السباحة","🏋️ كمال الأجسام","🥋 الفنون القتالية","🚴 ركوب الدراجات","🏃 ألعاب القوى"],
+languages:["🇬🇧 الإنجليزية","🇫🇷 الفرنسية","🇯🇵 اليابانية","🇨🇳 الصينية","🇪🇸 الإسبانية","🇩🇪 الألمانية","🇷🇺 الروسية","🇰🇷 الكورية"]
 };
 
-function openCategory(category){
+let points = parseInt(localStorage.getItem("points")) || 0;
+let currentUser = localStorage.getItem("username") || "";
 
-let html = `
-<div style="padding:20px">
+function getLevel(p){
+let level = levels[0];
+for(let l of levels) if(p >= l.min) level = l;
+return level;
+}
 
-<button onclick="location.reload()">
-⬅ العودة
-</button>
+function updateStats(){
+points = parseInt(localStorage.getItem("points")) || 0;
+document.getElementById("points").textContent = points;
+document.getElementById("levelName").textContent = getLevel(points).name;
+if(currentUser) document.getElementById("username").textContent = "مرحباً " + currentUser;
+}
 
-<h1 style="margin:20px 0">
-الأقسام
-</h1>
+updateStats();
 
-`;
-
-categories[category].forEach(item=>{
-
-html += `
-<div
-style="
-background:#0d1326;
-border:1px solid #1d2744;
-padding:20px;
-margin:10px 0;
-cursor:pointer;
-"
-onclick="comingSoon('${item}')"
->
-
-<h3>${item}</h3>
-
-<p>قريباً...</p>
-
+function showLogin(){
+if(localStorage.getItem("username")){
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#060816;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:60px">🐺</div>
+<h2 style="color:#d4af37;margin:20px 0">مرحباً ${localStorage.getItem("username")}</h2>
+<p style="opacity:.7;margin-bottom:10px">مستواك: ${getLevel(points).name}</p>
+<p style="opacity:.7;margin-bottom:30px">نقاطك: ${points}</p>
+<button onclick="localStorage.clear();location.reload()" style="background:red;color:white;padding:12px 24px;border:none;cursor:pointer;font-size:16px;font-weight:bold;">🚪 تسجيل الخروج</button>
+<br><br>
+<button onclick="location.reload()">⬅ العودة</button>
+</div>`;
+return;
+}
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#060816;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:60px">👁️</div>
+<h2 style="color:#d4af37;margin:20px 0">منظومة D لا ترحب بالجميع...<br>هل أنت من النخبة؟</h2>
+<div style="display:flex;gap:10px;margin-top:20px;">
+<button onclick="nextStep()" style="padding:12px 30px;font-size:16px;">نعم</button>
+<button onclick="goAway()" style="background:#1a1a2e;color:white;border:1px solid #333;padding:12px 30px;font-size:16px;cursor:pointer;">لا</button>
 </div>
-`;
+</div>`;
+}
 
+function goAway(){
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#060816;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:80px">🚪</div>
+<h1 style="color:red;margin:20px 0">انقلع من هنا 😂</h1>
+<p style="opacity:.7;">منظومة D لا ترحب بك</p>
+<br>
+<button onclick="location.reload()">⬅ العودة</button>
+</div>`;
+}
+
+function nextStep(){
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#060816;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:60px">👤</div>
+<h2 style="color:#d4af37;margin:20px 0;">أدخل بياناتك</h2>
+<input id="uname" type="text" placeholder="اسم مستعار..." style="display:block;margin:10px auto;padding:12px;background:#111827;border:1px solid #1d2744;color:white;width:280px;font-size:16px;">
+<input id="upass" type="password" placeholder="كلمة مرور..." style="display:block;margin:10px auto;padding:12px;background:#111827;border:1px solid #1d2744;color:white;width:280px;font-size:16px;">
+<br>
+<button onclick="register()" style="padding:12px 40px;font-size:16px;">دخول 🐺</button>
+<br><br>
+<button onclick="location.reload()">⬅ العودة</button>
+</div>`;
+}
+
+function register(){
+const name = document.getElementById("uname").value.trim();
+const pass = document.getElementById("upass").value.trim();
+if(!name || !pass){alert("أدخل الاسم وكلمة المرور!");return;}
+localStorage.setItem("username", name);
+localStorage.setItem("password", pass);
+currentUser = name;
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#060816;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:80px">🐺</div>
+<h1 style="color:#d4af37;margin:20px 0;">مرحباً ${name}</h1>
+<p style="opacity:.7;">لقد انضممت إلى منظومة D</p>
+<p style="margin-top:10px;">مستواك الحالي: 👤 المجهول</p>
+<br>
+<button onclick="location.reload()">⬅ العودة للرئيسية</button>
+</div>`;
+}
+
+function openSecret(){
+const p = parseInt(localStorage.getItem("points")) || 0;
+if(p < 1000000){
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#030305;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:80px">🔒</div>
+<h1 style="color:#333;margin:20px 0;">خفايا منظومة D</h1>
+<p style="color:#444;font-size:18px;">هذا المكان لا يُرى إلا من استحق...</p>
+<p style="color:#333;margin-top:20px;font-size:14px;">يتطلب: 🐺 الذئب المنفرد</p>
+<br><br>
+<button onclick="location.reload()">⬅ العودة</button>
+</div>`;
+return;
+}
+document.body.innerHTML = `
+<div style="padding:40px;text-align:center;background:#030305;min-height:100vh;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<div style="font-size:80px">🐺</div>
+<h1 style="color:#d4af37;margin:20px 0;">خفايا منظومة D</h1>
+<p style="opacity:.7;">أهلاً أيها الذئب المنفرد... لقد أثبتت جدارتك</p>
+<br>
+<button onclick="location.reload()">⬅ العودة</button>
+</div>`;
+}
+
+function openCategory(category){
+if(category === "religion"){showReligionPage();return;}
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="location.reload()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">الأقسام</h1>`;
+categories[category].forEach(item=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="comingSoon('${item}')">
+<h3>${item}</h3><p style="opacity:.7;">قريباً...</p></div>`;
 });
-
 html += `</div>`;
-
 document.body.innerHTML = html;
+}
 
+function showReligionPage(){
+document.body.innerHTML = `
+<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="location.reload()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">🕌 الدين</h1>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showQuran()">
+<h3>📖 القرآن الكريم</h3><p style="opacity:.7;">تصفح سور القرآن الكريم كاملاً</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showHadith()">
+<h3>📜 الأحاديث النبوية</h3><p style="opacity:.7;">أحاديث من صحيح البخاري</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showAqeedah()">
+<h3>🕋 العقيدة</h3><p style="opacity:.7;">أركان الإيمان وأسس العقيدة الإسلامية</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showFiqh()">
+<h3>🕌 الفقه</h3><p style="opacity:.7;">أركان الإسلام والعبادات</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showSeerah()">
+<h3>📚 السيرة النبوية</h3><p style="opacity:.7;">سيرة النبي محمد ﷺ</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showAthkar()">
+<h3>📿 الأذكار</h3><p style="opacity:.7;">أذكار الصباح والمساء وسائر الأذكار</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showProphets()">
+<h3>👳 قصص الأنبياء</h3><p style="opacity:.7;">قصص الأنبياء والمرسلين</p></div>
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showTajweed()">
+<h3>🎙️ التجويد</h3><p style="opacity:.7;">أحكام تجويد القرآن الكريم</p></div>
+</div>`;
+}
+
+function showAqeedah(){
+const content = [
+{title:"أركان الإيمان الستة", text:"الإيمان بالله، وملائكته، وكتبه، ورسله، واليوم الآخر، والقدر خيره وشره. قال النبي ﷺ: الإيمان أن تؤمن بالله وملائكته وكتبه ورسله واليوم الآخر وتؤمن بالقدر خيره وشره."},
+{title:"التوحيد وأقسامه", text:"توحيد الربوبية: الإقرار بأن الله وحده هو الخالق الرازق المدبر.\nتوحيد الألوهية: إفراد الله بالعبادة وحده لا شريك له.\nتوحيد الأسماء والصفات: الإيمان بما وصف الله به نفسه في كتابه وسنة نبيه ﷺ."},
+{title:"الإيمان بالله", text:"الإيمان بوجود الله تعالى وأنه واحد أحد فرد صمد، لم يلد ولم يولد ولم يكن له كفوا أحد. وأنه الخالق لكل شيء، المتصف بصفات الكمال المنزه عن صفات النقص."},
+{title:"الإيمان بالملائكة", text:"الملائكة عالم غيبي خلقهم الله من نور، يعبدونه ولا يعصونه، ومنهم جبريل الموكل بالوحي، وميكائيل الموكل بالمطر، وإسرافيل الموكل بالنفخ في الصور، وعزرائيل ملك الموت."},
+{title:"الإيمان بالكتب السماوية", text:"أنزل الله كتباً على أنبيائه منها: التوراة على موسى، والإنجيل على عيسى، والزبور على داود، وصحف إبراهيم، والقرآن الكريم على محمد ﷺ. والقرآن ناسخ لما قبله وهو المحفوظ إلى يوم القيامة."},
+{title:"الإيمان بالرسل", text:"آمنا بجميع الأنبياء والمرسلين من آدم إلى محمد ﷺ خاتم الأنبياء والمرسلين. وأولو العزم منهم: نوح وإبراهيم وموسى وعيسى ومحمد عليهم الصلاة والسلام."},
+{title:"الإيمان باليوم الآخر", text:"الإيمان بالبعث بعد الموت، والحشر، والحساب، والميزان، والصراط، والجنة والنار. قال تعالى: (وأن الساعة آتية لا ريب فيها وأن الله يبعث من في القبور)."},
+{title:"الإيمان بالقدر", text:"الإيمان بأن الله قدّر كل شيء وكتبه في اللوح المحفوظ قبل خلق السماوات والأرض بخمسين ألف سنة. والقدر له أربع مراتب: العلم، الكتابة، المشيئة، الخلق."},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">🕋 العقيدة الإسلامية</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;white-space:pre-line;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+function showFiqh(){
+const content = [
+{title:"أركان الإسلام الخمسة", text:"1. شهادة أن لا إله إلا الله وأن محمداً رسول الله\n2. إقامة الصلاة\n3. إيتاء الزكاة\n4. صوم رمضان\n5. حج البيت لمن استطاع إليه سبيلاً"},
+{title:"الصلاة", text:"الصلاة عمود الدين وهي خمس صلوات في اليوم والليلة:\n• الفجر: ركعتان\n• الظهر: أربع ركعات\n• العصر: أربع ركعات\n• المغرب: ثلاث ركعات\n• العشاء: أربع ركعات\nشروطها: الطهارة، ستر العورة، استقبال القبلة، دخول الوقت، النية."},
+{title:"الزكاة", text:"الزكاة ركن من أركان الإسلام، تجب في المال إذا بلغ النصاب وحال عليه الحول.\nزكاة الذهب والفضة والنقود: ربع العشر (2.5%)\nزكاة الفطر: صاع من طعام أهل البلد تُخرج قبل صلاة العيد."},
+{title:"الصيام", text:"صيام رمضان فرض على كل مسلم بالغ عاقل قادر.\nأركانه: النية، الإمساك عن المفطرات من طلوع الفجر إلى غروب الشمس.\nالمفطرات: الأكل والشرب عمداً، الجماع، القيء عمداً.\nيُفطر المريض والمسافر ويقضيان بعد رمضان."},
+{title:"الحج", text:"الحج فرض على المستطيع مرة في العمر.\nأركانه: الإحرام، الوقوف بعرفة، طواف الإفاضة، السعي بين الصفا والمروة.\nمناسكه: الإحرام من الميقات، طواف القدوم، السعي، الوقوف بعرفة يوم 9 ذي الحجة، المبيت بمزدلفة، رمي الجمرات، الحلق أو التقصير، طواف الإفاضة."},
+{title:"الطهارة", text:"الطهارة شرط لصحة الصلاة.\nأنواعها:\n• الوضوء: غسل الوجه واليدين والرأس والرجلين\n• الغسل: يجب من الجنابة والحيض والنفاس\n• التيمم: عند عدم الماء أو تعذر استعماله\nنواقض الوضوء: الخارج من السبيلين، النوم، لمس الفرج، أكل لحم الإبل."},
+{title:"الحلال والحرام", text:"من المحرمات في الإسلام:\n• الخمر والمسكرات\n• لحم الخنزير\n• الربا\n• الزنا\n• السرقة\n• القتل بغير حق\n• الكذب والغيبة والنميمة\nقال تعالى: (وَأَحَلَّ اللَّهُ الْبَيْعَ وَحَرَّمَ الرِّبَا)"},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">🕌 الفقه الإسلامي</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;white-space:pre-line;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+function showSeerah(){
+const content = [
+{title:"مولد النبي ﷺ وطفولته", text:"وُلد النبي محمد ﷺ في مكة المكرمة عام الفيل (570م) في شهر ربيع الأول. وُلد يتيماً فقد توفي أبوه عبدالله قبل ولادته. أرضعته حليمة السعدية في بني سعد. توفيت أمه آمنة بنت وهب وهو في السادسة من عمره، ثم كفله جده عبدالمطلب، ولما توفي جده كفله عمه أبو طالب."},
+{title:"شبابه قبل البعثة", text:"عُرف ﷺ بالصادق الأمين قبل البعثة، عمل راعياً للغنم، وسافر إلى الشام للتجارة مع عمه. تزوج من السيدة خديجة بنت خويلد رضي الله عنها وهو في الخامسة والعشرين من عمره. شارك في حلف الفضول لنصرة المظلومين."},
+{title:"البعثة النبوية", text:"نزل الوحي على النبي ﷺ وهو في الأربعين من عمره في غار حراء، فجاءه جبريل عليه السلام وقال له: اقرأ. فقال: ما أنا بقارئ. فأنزل الله: (اقرأ باسم ربك الذي خلق). وكان ذلك في رمضان من السنة الأولى للبعثة."},
+{title:"الدعوة في مكة", text:"بدأت الدعوة سراً لثلاث سنوات، ثم جهر النبي ﷺ بالدعوة. آمن به خديجة وأبو بكر وعلي وزيد. عانى المسلمون من الأذى والتعذيب من قريش. هاجر بعض المسلمين إلى الحبشة فراراً من الأذى. وقع المشركون حصاراً على بني هاشم ثلاث سنوات."},
+{title:"الهجرة إلى المدينة", text:"في السنة الثالثة عشرة من البعثة، هاجر النبي ﷺ مع أبي بكر الصديق إلى المدينة المنورة. اختبأا في غار ثور ثلاثة أيام. وصل النبي ﷺ إلى المدينة في ربيع الأول، وكانت الهجرة بداية التقويم الهجري."},
+{title:"بناء الدولة الإسلامية", text:"في المدينة: بنى النبي ﷺ المسجد النبوي، وآخى بين المهاجرين والأنصار، وكتب وثيقة المدينة. شرعت الصلوات الخمس والزكاة والصيام. وقعت غزوات بدر وأحد والخندق وغيرها."},
+{title:"فتح مكة", text:"في السنة الثامنة للهجرة، فتح النبي ﷺ مكة المكرمة في رمضان. دخلها بجيش قوامه عشرة آلاف مقاتل. عفا النبي ﷺ عن أهل مكة وقال: اذهبوا فأنتم الطلقاء. طهّر الكعبة من الأصنام وأعاد لها مكانتها."},
+{title:"حجة الوداع ووفاته ﷺ", text:"في السنة العاشرة للهجرة أدى النبي ﷺ حجة الوداع وخطب خطبته الشهيرة. توفي ﷺ في الثاني عشر من ربيع الأول سنة 11هـ في المدينة المنورة. عمره ثلاثة وستون عاماً. ودُفن في حجرة السيدة عائشة رضي الله عنها."},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📚 السيرة النبوية</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+function showAthkar(){
+const content = [
+{title:"أذكار الصباح", text:"• أعوذ بالله من الشيطان الرجيم (3 مرات)\n• بسم الله الرحمن الرحيم: (قل هو الله أحد) و(المعوذتين) — 3 مرات\n• آية الكرسي — مرة واحدة\n• أصبحنا وأصبح الملك لله، والحمد لله — مرة\n• اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور — مرة\n• سبحان الله وبحمده — 100 مرة\n• لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير — 100 مرة"},
+{title:"أذكار المساء", text:"• أعوذ بالله من الشيطان الرجيم (3 مرات)\n• (قل هو الله أحد) و(المعوذتين) — 3 مرات\n• آية الكرسي — مرة واحدة\n• أمسينا وأمسى الملك لله والحمد لله — مرة\n• اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير — مرة\n• سبحان الله وبحمده — 100 مرة"},
+{title:"أذكار النوم", text:"• باسمك اللهم أموت وأحيا — عند النوم\n• آية الكرسي — مرة\n• (قل هو الله أحد) و(المعوذتين) — 3 مرات\n• سبحان الله — 33 مرة\n• الحمد لله — 33 مرة\n• الله أكبر — 34 مرة\n• اللهم قني عذابك يوم تبعث عبادك — 3 مرات"},
+{title:"أذكار الصلاة", text:"• تكبيرة الإحرام: الله أكبر\n• دعاء الاستفتاح: سبحانك اللهم وبحمدك...\n• في الركوع: سبحان ربي العظيم — 3 مرات\n• بين السجدتين: رب اغفر لي — 3 مرات\n• في السجود: سبحان ربي الأعلى — 3 مرات\n• التشهد: التحيات لله والصلوات والطيبات...\n• بعد الصلاة: أستغفر الله — 3 مرات، اللهم أنت السلام..."},
+{title:"أذكار متنوعة", text:"• الاستغفار: أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه\n• الصلاة على النبي: اللهم صل على محمد وعلى آل محمد...\n• دعاء الكرب: لا إله إلا الله العظيم الحليم...\n• حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم — 7 مرات\n• لا حول ولا قوة إلا بالله — كثيراً"},
+{title:"أذكار الأكل والشرب", text:"• قبل الأكل: بسم الله\n• إذا نسي: بسم الله أوله وآخره\n• بعد الأكل: الحمد لله الذي أطعمني هذا ورزقنيه من غير حول مني ولا قوة\n• قبل الشرب: بسم الله\n• بعد الشرب: الحمد لله الذي سقانا عذباً فراتاً برحمته"},
+{title:"أذكار الخروج والدخول", text:"• عند دخول المنزل: بسم الله ولجنا وبسم الله خرجنا وعلى الله ربنا توكلنا\n• عند الخروج من المنزل: بسم الله توكلت على الله لا حول ولا قوة إلا بالله\n• دخول المسجد: اللهم افتح لي أبواب رحمتك\n• الخروج من المسجد: اللهم إني أسألك من فضلك"},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📿 الأذكار</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2.2;font-size:15px;opacity:.9;white-space:pre-line;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+function showProphets(){
+const content = [
+{title:"آدم عليه السلام — أبو البشر", text:"خلق الله آدم من طين وعلّمه الأسماء كلها ونفخ فيه الروح وأسجد له الملائكة. أسكنه الله الجنة مع زوجته حواء، ثم أهبطهما إلى الأرض بعد أن أكلا من الشجرة المنهي عنها. تاب الله عليه وجعله خليفة في الأرض."},
+{title:"نوح عليه السلام", text:"دعا نوح قومه إلى توحيد الله ألف سنة إلا خمسين عاماً فلم يؤمن معه إلا قليل. أمره الله أن يصنع السفينة فصنعها، ثم أنزل الله الطوفان فأغرق الكافرين. نجا نوح ومن معه من المؤمنين. وهو من أولي العزم من الرسل."},
+{title:"إبراهيم عليه السلام — خليل الله", text:"إبراهيم أبو الأنبياء وخليل الله. كسر أصنام قومه، فألقوه في النار فجعلها الله برداً وسلاماً عليه. هاجر إلى الشام ثم أسكن ابنه إسماعيل وأمه هاجر بمكة. بنى الكعبة المشرفة مع ابنه إسماعيل. ابتلاه الله بذبح ابنه فصبر ففداه الله بذبح عظيم."},
+{title:"موسى عليه السلام — كليم الله", text:"وُلد في مصر في عهد فرعون الذي كان يذبح أبناء بني إسرائيل. أوحى الله لأمه أن تلقيه في النيل فالتقطه آل فرعون. كلّم الله موسى تكليماً، وأرسله إلى فرعون فأبى وطغى. أنزل الله عليه العذاب وأغرق فرعون وجنوده في البحر. أنزل الله عليه التوراة."},
+{title:"عيسى عليه السلام — روح الله", text:"وُلد عيسى من أمه مريم العذراء بأمر الله من غير أب. أيّده الله بالمعجزات: يشفي الأكمه والأبرص ويحيي الموتى بإذن الله. أنزل الله عليه الإنجيل. رفعه الله إليه ولم يُقتل، وسينزل في آخر الزمان. قال تعالى: (إن مثل عيسى عند الله كمثل آدم خلقه من تراب)."},
+{title:"يوسف عليه السلام", text:"يوسف بن يعقوب بن إسحاق بن إبراهيم. حسده إخوته فألقوه في البئر وأخبروا أباهم أن الذئب أكله. بيع عبداً في مصر، فابتُلي بامرأة العزيز وسُجن ظلماً. أخرجه الله من السجن وجعله على خزائن مصر. سمّى الله قصته أحسن القصص."},
+{title:"داود عليه السلام", text:"داود نبي وملك، آتاه الله الزبور والحكمة وفصل الخطاب. كان صوته جميلاً تسبّح معه الطيور والجبال. قتل جالوت وهو شاب. علّمه الله صنعة الدروع. كان يصوم يوماً ويفطر يوماً وهو أحب الصيام إلى الله."},
+{title:"سليمان عليه السلام", text:"سليمان بن داود، آتاه الله ملكاً عظيماً لم يُعطه أحداً من بعده. سخّر الله له الجن والريح والطير والوحوش. كان يفهم منطق الطير. بنى بيت المقدس. قصته مع ملكة سبأ بلقيس من أعظم القصص القرآنية."},
+{title:"محمد ﷺ — خاتم الأنبياء", text:"محمد بن عبدالله بن عبدالمطلب، خاتم الأنبياء والمرسلين. أرسله الله رحمة للعالمين. أُنزل عليه القرآن الكريم. اتسم بالصدق والأمانة والرحمة. فتح مكة وأتم الله به الدين. قال تعالى: (وما أرسلناك إلا رحمة للعالمين). توفي ﷺ وهو في الثالثة والستين من عمره."},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">👳 قصص الأنبياء</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+function showTajweed(){
+const content = [
+{title:"ما هو التجويد؟", text:"التجويد لغةً: التحسين. اصطلاحاً: إخراج كل حرف من مخرجه مع إعطائه حقه ومستحقه من الصفات. حكمه: فرض كفاية تعلمه وفرض عين تطبيقه عند قراءة القرآن. قال تعالى: (ورتّل القرآن ترتيلاً)."},
+{title:"مخارج الحروف", text:"الجوف: الألف والواو والياء المدية\nالحلق: الهمزة والهاء (أقصاه)، العين والحاء (وسطه)، الغين والخاء (أدناه)\nاللسان: القاف والكاف والجيم والشين والياء والضاد واللام والنون والراء والطاء والدال والتاء والظاء والذال والثاء\nالشفتان: الباء والميم والواو والفاء\nالخيشوم: الغنة"},
+{title:"النون الساكنة والتنوين", text:"لها أربعة أحكام:\n1. الإظهار: عند حروف الحلق (أ ه ع ح غ خ) — تُظهر النون بوضوح\n2. الإدغام: عند (ي ر م ل و ن) — تُدغم النون في الحرف التالي\n3. الإقلاب: عند الباء — تُقلب النون ميماً\n4. الإخفاء: عند باقي الحروف الخمسة عشر — تُخفى النون"},
+{title:"الميم الساكنة", text:"لها ثلاثة أحكام:\n1. الإخفاء الشفوي: عند الباء — تُخفى الميم مع الغنة\n2. الإدغام الشفوي: عند الميم — تُدغم الميم في الميم مع الغنة\n3. الإظهار الشفوي: عند باقي الحروف — تُظهر الميم بوضوح"},
+{title:"المدود", text:"المد الطبيعي: مقداره حركتان عند حروف المد (ا و ي)\nمد المنفصل: أن يأتي حرف المد في آخر كلمة والهمزة في كلمة بعدها — مقداره 4 أو 5 حركات\nمد المتصل: أن يجتمع حرف المد والهمزة في كلمة واحدة — مقداره 4 أو 5 حركات واجب\nمد العارض للسكون: عند الوقف على كلمة آخرها حرف مد — مقداره 2 أو 4 أو 6 حركات"},
+{title:"التفخيم والترقيق", text:"حروف الاستعلاء السبعة دائماً مفخمة: (خ ص ض غ ط ق ظ)\nاللام: مرققة دائماً إلا في لفظ الجلالة (الله) بعد فتح أو ضم\nالراء: تُفخم في حالات وتُرقق في حالات:\n• تُفخم إذا كانت مفتوحة أو مضمومة أو ساكنة بعد فتح أو ضم\n• تُرقق إذا كانت مكسورة أو ساكنة بعد كسر"},
+{title:"الوقف والابتداء", text:"الوقف: قطع الصوت على الكلمة زمناً يتنفس فيه القارئ.\nأنواعه:\n• الوقف التام: يحسن الوقف والابتداء بعده\n• الوقف الكافي: يحسن الوقف والابتداء بعده مع ارتباط المعنى\n• الوقف الحسن: يحسن الوقف ولا يحسن الابتداء بعده\n• الوقف القبيح: لا يحسن الوقف ولا الابتداء بعده"},
+];
+let html = `<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">🎙️ أحكام التجويد</h1>`;
+content.forEach(c=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
+<p style="line-height:2.2;font-size:15px;opacity:.9;white-space:pre-line;">${c.text}</p>
+</div>`;
+});
+html += `</div>`;
+document.body.innerHTML = html;
+}
+
+async function showQuran(){
+document.body.innerHTML = `
+<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📖 القرآن الكريم</h1>
+<p id="loading">⏳ جاري التحميل...</p>
+<div id="surahList"></div>
+</div>`;
+try{
+const res = await fetch("https://api.alquran.cloud/v1/surah");
+const data = await res.json();
+let html = "";
+data.data.forEach(s=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:15px;margin:8px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="showSurah(${s.number},'${s.name}')">
+<span style="color:#d4af37;font-size:18px;">${s.name}</span>
+<span style="opacity:.6;">${s.englishName} — ${s.numberOfAyahs} آية</span>
+</div>`;
+});
+document.getElementById("loading").remove();
+document.getElementById("surahList").innerHTML = html;
+}catch(e){
+document.getElementById("loading").textContent = "❌ فشل التحميل، تحقق من الإنترنت";
+}
+}
+
+async function showSurah(number, name){
+document.body.innerHTML = `
+<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showQuran()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">${name}</h1>
+<p id="loading">⏳ جاري التحميل...</p>
+<div id="ayahList"></div>
+</div>`;
+try{
+const res = await fetch(`https://api.alquran.cloud/v1/surah/${number}`);
+const data = await res.json();
+let html = "";
+data.data.ayahs.forEach(a=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:8px 0;text-align:right;line-height:2.5;font-size:20px;">
+<span style="color:#d4af37;font-size:14px;">(${a.numberInSurah})</span> ${a.text}
+</div>`;
+});
+document.getElementById("loading").remove();
+document.getElementById("ayahList").innerHTML = html;
+}catch(e){
+document.getElementById("loading").textContent = "❌ فشل التحميل";
+}
+}
+
+async function showHadith(){
+document.body.innerHTML = `
+<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionPage()">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📜 الأحاديث النبوية</h1>
+<p style="opacity:.7;margin-bottom:20px;">من صحيح البخاري</p>
+<p id="loading">⏳ جاري التحميل...</p>
+<div id="hadithList"></div>
+</div>`;
+try{
+const res = await fetch("https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-bukhari.json");
+const data = await res.json();
+let html = "";
+data.hadiths.slice(0,30).forEach((h,i)=>{
+html += `<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;line-height:2;font-size:16px;text-align:right;">
+<span style="color:#d4af37;">حديث ${i+1}</span><br>${h.text}
+</div>`;
+});
+document.getElementById("loading").remove();
+document.getElementById("hadithList").innerHTML = html;
+}catch(e){
+document.getElementById("loading").textContent = "❌ فشل التحميل، تحقق من الإنترنت";
+}
 }
 
 function comingSoon(title){
-
 document.body.innerHTML = `
-
-<div
-style="
-padding:40px;
-text-align:center;
-color:white;
-background:#060816;
-height:100vh;
-"
->
-
-<button onclick="location.reload()">
-⬅ العودة
-</button>
-
-<h1 style="margin-top:40px">
-${title}
-</h1>
-
-<h2 style="color:#d4af37">
-🚧 قريباً
-</h2>
-
-<p>
-هذا القسم قيد التطوير.
-</p>
-
-</div>
-
-`;
-
+<div style="padding:40px;text-align:center;color:white;background:#060816;min-height:100vh;">
+<button onclick="location.reload()">⬅ العودة</button>
+<h1 style="margin-top:40px;">${title}</h1>
+<h2 style="color:#d4af37;">🚧 قريباً</h2>
+<p>هذا القسم قيد التطوير.</p>
+</div>`;
 }
 </script>
-
 </body>
 </html>
