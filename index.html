@@ -273,15 +273,109 @@ document.body.innerHTML=`
 }
 
 // ===== الفئات =====
+const categoryNames={
+science:"🔬 العلوم",law:"⚖️ القانون",technology:"💻 التكنولوجيا",
+economy:"💰 الاقتصاد",arts:"🎨 الفنون",sports:"🏋️ الرياضة",languages:"🌍 اللغات"
+};
+
+// بيانات الكتب — أنت تضيفها لاحقاً
+const booksData={};
+
+// بيانات الشروحات — أنت تضيفها لاحقاً  
+const explanationsData={};
+
 function openCategory(category){
 if(category==="religion"){showReligionPage();return;}
+const catName=categoryNames[category]||category;
 let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
 <button onclick="location.reload()">⬅ العودة</button>
-<h1 style="margin:20px 0;color:#d4af37;">الأقسام</h1>`;
+<h1 style="margin:20px 0;color:#d4af37;">${catName}</h1>`;
 categories[category].forEach(item=>{
-html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="comingSoon('${item}')">
-<h3>${item}</h3><p style="opacity:.7;">قريباً...</p></div>`;
+const key=category+"_"+item.replace(/[^a-zA-Z0-9أ-ي]/g,"_");
+html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showSubSection('${category}','${item.replace(/'/g,"\\'")}')">
+<h3>${item}</h3><p style="opacity:.7;">اضغط للدخول</p></div>`;
 });
+html+=`</div>`;
+document.body.innerHTML=html;
+}
+
+function showSubSection(category,item){
+const catName=categoryNames[category]||category;
+const key=category+"_"+item;
+const books=booksData[key]||[];
+const explanations=explanationsData[key]||[];
+const hasQuiz=quizData[category]!==undefined;
+document.body.innerHTML=`
+<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="openCategory('${category}')">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">${item}</h1>
+
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showBooks('${category}','${item.replace(/'/g,"\\'")}')">
+<h3>📚 الكتب</h3>
+<p style="opacity:.7;">${books.length>0?books.length+" كتاب متاح":"قريباً — سيتم إضافة الكتب"}</p>
+</div>
+
+<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="showExplanations('${category}','${item.replace(/'/g,"\\'")}')">
+<h3>📖 الشروحات</h3>
+<p style="opacity:.7;">${explanations.length>0?explanations.length+" شرح متاح":"قريباً — سيتم إضافة الشروحات"}</p>
+</div>
+
+${hasQuiz?`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;cursor:pointer;" onclick="startQuiz('${category}','showReligionPage')">
+<h3>🧠 اختبر معلوماتك</h3>
+<p style="opacity:.7;">أسئلة وتحديات في ${item}</p>
+</div>`:`<div style="background:#0a0a0a;border:1px solid #1d2744;padding:20px;margin:10px 0;opacity:.5;">
+<h3>🧠 اختبر معلوماتك</h3>
+<p style="opacity:.7;">قريباً...</p>
+</div>`}
+
+</div>`;
+}
+
+function showBooks(category,item){
+const key=category+"_"+item;
+const books=booksData[key]||[];
+let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showSubSection('${category}','${item.replace(/'/g,"\\'")}')">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📚 كتب ${item}</h1>`;
+if(books.length===0){
+html+=`<div style="text-align:center;margin-top:60px;opacity:.6;">
+<p style="font-size:50px;">📚</p>
+<p style="font-size:18px;margin-top:20px;">لا توجد كتب بعد</p>
+<p style="margin-top:10px;">سيتم إضافة الكتب قريباً</p>
+</div>`;
+}else{
+books.forEach(b=>{
+html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;">
+<h3 style="color:#d4af37;">${b.title}</h3>
+<p style="opacity:.7;margin-top:8px;">${b.author||""}</p>
+<p style="margin-top:10px;line-height:1.8;">${b.description||""}</p>
+</div>`;
+});
+}
+html+=`</div>`;
+document.body.innerHTML=html;
+}
+
+function showExplanations(category,item){
+const key=category+"_"+item;
+const explanations=explanationsData[key]||[];
+let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showSubSection('${category}','${item.replace(/'/g,"\\'")}')">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📖 شروحات ${item}</h1>`;
+if(explanations.length===0){
+html+=`<div style="text-align:center;margin-top:60px;opacity:.6;">
+<p style="font-size:50px;">📖</p>
+<p style="font-size:18px;margin-top:20px;">لا توجد شروحات بعد</p>
+<p style="margin-top:10px;">سيتم إضافة الشروحات قريباً</p>
+</div>`;
+}else{
+explanations.forEach(e=>{
+html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${e.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;">${e.content}</p>
+</div>`;
+});
+}
 html+=`</div>`;
 document.body.innerHTML=html;
 }
@@ -313,10 +407,19 @@ document.body.innerHTML=`
 
 // ===== دالة مساعدة لعرض محتوى القسم =====
 function showSection(title, content, backFn, quizKey){
+const books=booksData["religion_"+quizKey]||[];
+const explanations=explanationsData["religion_"+quizKey]||[];
 let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
 <button onclick="${backFn}()">⬅ العودة</button>
 <h1 style="margin:20px 0;color:#d4af37;">${title}</h1>
-<button onclick="startQuiz('${quizKey}','${backFn}')" style="margin-bottom:20px;padding:12px 24px;font-size:15px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🎯 اختبر معلوماتك</button>`;
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+<button onclick="showReligionBooks('${quizKey}','${title.replace(/'/g,"\\'")}')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📚 الكتب</button>
+<button onclick="showReligionExplanations('${quizKey}','${title.replace(/'/g,"\\'")}')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📖 الشروحات</button>
+<button onclick="startQuiz('${quizKey}','${backFn}')" style="padding:14px;font-size:14px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🧠 الاختبار</button>
+</div>
+
+<h2 style="color:#d4af37;margin:15px 0;font-size:16px;opacity:.8;">📝 المحتوى</h2>`;
 content.forEach(c=>{
 html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
 <h3 style="color:#d4af37;margin-bottom:12px;">${c.title}</h3>
@@ -325,6 +428,59 @@ html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;marg
 });
 html+=`</div>`;
 document.body.innerHTML=html;
+}
+
+function showReligionBooks(quizKey, title){
+const books=booksData["religion_"+quizKey]||[];
+let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionSection('${quizKey}')">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📚 كتب ${title}</h1>`;
+if(books.length===0){
+html+=`<div style="text-align:center;margin-top:60px;opacity:.6;">
+<p style="font-size:50px;">📚</p>
+<p style="font-size:18px;margin-top:20px;">لا توجد كتب بعد</p>
+<p style="margin-top:10px;">سيتم إضافة الكتب قريباً</p>
+</div>`;
+}else{
+books.forEach(b=>{
+html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;">
+<h3 style="color:#d4af37;">${b.title}</h3>
+<p style="opacity:.7;margin-top:8px;">${b.author||""}</p>
+<p style="margin-top:10px;line-height:1.8;">${b.description||""}</p>
+</div>`;
+});
+}
+html+=`</div>`;
+document.body.innerHTML=html;
+}
+
+function showReligionExplanations(quizKey, title){
+const explanations=explanationsData["religion_"+quizKey]||[];
+let html=`<div style="padding:20px;background:#060816;min-height:100vh;color:white;">
+<button onclick="showReligionSection('${quizKey}')">⬅ العودة</button>
+<h1 style="margin:20px 0;color:#d4af37;">📖 شروحات ${title}</h1>`;
+if(explanations.length===0){
+html+=`<div style="text-align:center;margin-top:60px;opacity:.6;">
+<p style="font-size:50px;">📖</p>
+<p style="font-size:18px;margin-top:20px;">لا توجد شروحات بعد</p>
+<p style="margin-top:10px;">سيتم إضافة الشروحات قريباً</p>
+</div>`;
+}else{
+explanations.forEach(e=>{
+html+=`<div style="background:#0d1326;border:1px solid #1d2744;padding:20px;margin:10px 0;border-right:3px solid #d4af37;">
+<h3 style="color:#d4af37;margin-bottom:12px;">${e.title}</h3>
+<p style="line-height:2;font-size:15px;opacity:.9;">${e.content}</p>
+</div>`;
+});
+}
+html+=`</div>`;
+document.body.innerHTML=html;
+}
+
+function showReligionSection(key){
+const map={aqeedah:showAqeedah,fiqh:showFiqh,seerah:showSeerah,athkar:showAthkar,prophets:showProphets,tajweed:showTajweed,quran:showQuran,hadith:showHadith};
+if(map[key]) map[key]();
+else showReligionPage();
 }
 
 function showAqeedah(){
@@ -409,7 +565,11 @@ document.body.innerHTML=`
 <div style="padding:20px;background:#060816;min-height:100vh;color:white;">
 <button onclick="showReligionPage()">⬅ العودة</button>
 <h1 style="margin:20px 0;color:#d4af37;">📖 القرآن الكريم</h1>
-<button onclick="startQuiz('quran','showReligionPage')" style="margin-bottom:20px;padding:12px 24px;font-size:15px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🎯 اختبر معلوماتك</button>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+<button onclick="showReligionBooks('quran','القرآن الكريم')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📚 الكتب</button>
+<button onclick="showReligionExplanations('quran','القرآن الكريم')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📖 الشروحات</button>
+<button onclick="startQuiz('quran','showReligionPage')" style="padding:14px;font-size:14px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🧠 الاختبار</button>
+</div>
 <p id="loading">⏳ جاري التحميل...</p>
 <div id="surahList"></div>
 </div>`;
@@ -460,7 +620,11 @@ document.body.innerHTML=`
 <div style="padding:20px;background:#060816;min-height:100vh;color:white;">
 <button onclick="showReligionPage()">⬅ العودة</button>
 <h1 style="margin:20px 0;color:#d4af37;">📜 الأحاديث النبوية</h1>
-<button onclick="startQuiz('hadith','showReligionPage')" style="margin-bottom:20px;padding:12px 24px;font-size:15px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🎯 اختبر معلوماتك</button>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+<button onclick="showReligionBooks('hadith','الأحاديث النبوية')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📚 الكتب</button>
+<button onclick="showReligionExplanations('hadith','الأحاديث النبوية')" style="padding:14px;font-size:14px;background:#0d1326;color:#d4af37;border:1px solid #d4af37;">📖 الشروحات</button>
+<button onclick="startQuiz('hadith','showReligionPage')" style="padding:14px;font-size:14px;background:#1a2a0a;color:#d4af37;border:2px solid #d4af37;">🧠 الاختبار</button>
+</div>
 <p style="opacity:.7;margin-bottom:20px;">من صحيح البخاري</p>
 <p id="loading">⏳ جاري التحميل...</p>
 <div id="hadithList"></div>
